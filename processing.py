@@ -8,26 +8,6 @@ class Person:
         self.media_count    = media_count
         self.kkks_count     = kkks_count
 
-# def has_valid_datetime_format(text):
-    # pattern = r'^\d{2}/\d{2}/\d{4} \d{2}:\d{2} - '
-    # pattern2= r'^\d{2}/\d{2}/\d{4}, \d{2}:\d{2} - '
-    # return bool(re.match(pattern, text)) or bool(re.match(pattern2, text))
-
-# def extract_datetime(text):
-    # patterns = [
-        # r'(^\d{2}/\d{2}/\d{4} \d{2}:\d{2} - )',
-        # r'(^\d{1}/\d{2}/\d{4}, \d{2}:\d{2} - )'
-    # ]
-    # 
-    # for pattern in patterns:
-        # match = re.match(pattern, text)
-        # if match:
-            # datetime_part = match.group(1)
-            # content_part = text[len(datetime_part):]
-            # return datetime_part, content_part
-    # 
-    # return None, text
-
 def extract_datetime(line):
     pattern = r'^(\d{1,2}/\d{1,2}/\d{4}\s*[,]?\s*\d{1,2}:\d{2}\s*-\s*)'
     
