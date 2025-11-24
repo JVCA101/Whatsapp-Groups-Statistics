@@ -19,10 +19,13 @@ def extract_datetime(line):
     
     return None, line
 
-def person_on_list(person, people):
+def person_on_list(person, people, rest):
     for p in people:
         if p.name == person:
-            p.messages_count += 1
+            if rest == " <Mídia oculta>" or rest == " <Media omitted>":
+                p.media_count += 1
+            else:
+                p.messages_count += 1
             return
     
     people.append(Person(person, messages_count=1))
@@ -39,14 +42,19 @@ def process_txt(dir):
 
                 # if is not a message by someone, the skip
                 if ":" in rest:
-                    person_on_list(rest.split(":")[0], people)
+                    person_on_list(rest.split(":")[0], people, rest.split(":")[1])
                     message_count += 1
             else:
                 pass
 
-    print(message_count)
+    print("Total: " + str(message_count))
+    print("Quantidade de mensagens por pessoa")
     for person in people:
-        print(person.name + ":" + str(person.messages_count))
+        print(person.name + ": " + str(person.messages_count))
+    print("\nQuantidade de media por pessoa")
+    for person in people:
+        print(person.name + ": " + str(person.media_count))
+
     os.chdir("../")
 
 
