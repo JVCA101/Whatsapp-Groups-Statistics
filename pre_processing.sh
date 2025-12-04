@@ -3,8 +3,10 @@
 find . -maxdepth 1 -name "*.zip" | while read -r file; do
     echo "Unzipping $file to folder"
     DIRNAME="${file%.zip}"
-    if ! find . -type d -name "$DIRNAME"; then
-        mkdir "$DIRNAME"
+    if  find . -type d -name "$DIRNAME"; then
+        echo "Removing old $DIRNAME folder"
+        rm -rf "$DIRNAME"
     fi
-    unzip -d "$DIRNAME" "$file"
+    mkdir "$DIRNAME"
+    unzip -O utf-8 -d "$DIRNAME" "$file"
 done
