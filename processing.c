@@ -12,18 +12,21 @@ struct Person {
 int process_dir(struct dirent *entry)
 {
     // editing filename to be "folder/filename.txt"
-    char* txtname = entry->d_name;
+    char* txtname = malloc(sizeof(char)*strlen(entry->d_name));
+    strcpy(entry->d_name, txtname);
     strcat(txtname, "/");
     strcat(txtname, entry->d_name);
     txtname[strlen(txtname)-1] = '\0';
     strcat(txtname, ".txt");
     
+    printf("\n%s\n", txtname);
 
     FILE *text = fopen(txtname, "r");
 
     if(text == NULL)
     {
         printf("ERROR: File %s could not be open\n", txtname);
+        free(txtname);
         // closedir(group_dir);
         return EXIT_FAILURE;
     }
@@ -34,6 +37,8 @@ int process_dir(struct dirent *entry)
         printf("%c", c);
     fclose(text);
     // closedir(group_dir);
+
+    free(txtname);
 
     return EXIT_SUCCESS;
 }
