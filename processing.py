@@ -110,9 +110,14 @@ def process_txt(dir: str):
 
 def main():
 
+    dirs = []
     for dir in os.listdir(os.getcwd()):
         if os.path.isdir(dir) and not dir.startswith("."):
             process_txt(dir)
+            dirs.append(dir)
+    with open("directories.txt", 'w') as file:
+        for dir in dirs:
+            file.write(dir + "\n")
 
 if __name__ == "__main__":
     main()
