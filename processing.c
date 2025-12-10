@@ -12,11 +12,11 @@ struct Person {
 int process_dir(struct dirent *entry)
 {
     // editing filename to be "folder/filename.txt"
-    char* txtname = malloc(sizeof(char)*strlen(entry->d_name));
-    strcpy(entry->d_name, txtname);
+    char* txtname = malloc(2*sizeof(char)*strlen(entry->d_name) + 6);
+    strcpy(txtname, entry->d_name);
     strcat(txtname, "/");
     strcat(txtname, entry->d_name);
-    txtname[strlen(txtname)-1] = '\0';
+    printf("%s\n", txtname);
     strcat(txtname, ".txt");
     
     printf("\n%s\n", txtname);
