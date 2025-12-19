@@ -177,6 +177,10 @@ def process_txt_global(dir: str):
         output_file.write("emoji_hash = ")
         output_file.write(str(emoji_hash))
 
+    with open("emoji_hash.txt", 'w') as output_file:
+        for _emoji, _counter in zip(emoji_hash.keys(), emoji_hash.values()):
+            output_file.write(str(_emoji)+":"+str(_counter)+'\n')
+
     os.chdir("../")
 
 def main():
