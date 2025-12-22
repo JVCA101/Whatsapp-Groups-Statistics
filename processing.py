@@ -147,9 +147,9 @@ def process_txt_person(dir: str):
 
             if person.kkks_count.__len__() > 0:
                 output_file.write(str(np.max(person.kkks_count)) + ';' + str(np.min(person.kkks_count)) + ';')
-                output_file.write(str(np.sum(person.kkks_count) / person.kkks_count.__len__()))
+                output_file.write(str(np.sum(person.kkks_count) / person.kkks_count.__len__()) + ';')
             else:
-                output_file.write(';')
+                output_file.write(';;;')
             output_file.write('\n')
 
     os.chdir("../")
